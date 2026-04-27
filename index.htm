@@ -71,6 +71,38 @@
     }
     nav a:hover{text-decoration:underline}
 
+    @media (max-width: 768px) {
+      .site-header .container{
+        flex-wrap:wrap;
+        padding:10px 0;
+      }
+      .brand img{
+        height:70px;
+      }
+      nav{
+        white-space:normal;
+        gap:12px;
+        order:3;
+        width:100%;
+        margin-top:8px;
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+      nav a{
+        font-size:.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand img{
+        height:60px;
+      }
+      nav a{
+        font-size:.8rem;
+        margin:0 8px;
+      }
+    }
+
     .hero{
       background:
         linear-gradient(135deg, rgba(15,95,168,.90), rgba(123,60,180,.72) 48%, rgba(247,132,64,.75)),
@@ -258,39 +290,6 @@
       font-size:.95rem;
     }
 
-	@media (max-width: 768px) {
-      .site-header .container{
-        flex-wrap:wrap;
-        padding:10px 0;
-      }
-      .brand img{
-        height:70px;
-      }
-      nav{
-        white-space:normal;
-        gap:12px;
-        order:3;
-        width:100%;
-        margin-top:8px;
-        flex-wrap:wrap;
-        justify-content:center;
-      }
-      nav a{
-        font-size:.85rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .brand img{
-        height:60px;
-      }
-      nav a{
-        font-size:.8rem;
-        margin:0 8px;
-      }
-    }
-
-	  
     @media (max-width: 900px){
       .grid-2,.grid-3,.grid-4,.logo-strip,.facts{
         grid-template-columns:1fr;
@@ -444,7 +443,7 @@
   <header class="site-header">
     <div class="container">
       <a href="#" class="brand" aria-label="STEM Summer School Cyprus home">
-        <src="images\Logo_169.svg" alt="STEM Summer School Cyprus logo" />
+        <img src="C:\Users\lady7349\Desktop\Camp_2026\Site\images\Logo_169.svg" alt="STEM Summer School Cyprus logo" />
       </a>
       <nav>
         <a href="#about">About</a>
