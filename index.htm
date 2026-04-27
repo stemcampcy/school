@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STEM Summer School Cyprus 2026</title>
+  <style>
+    :root{
+      --blue:#0f5fa8;
+      --orange:#f97316;
+      --gold:#f6b000;
+      --green:#4ba62f;
+      --navy:#0f2747;
+      --ink:#1f2937;
+      --muted:#5b6575;
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --line:#d9e0ea;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    .container{
+      width:min(1120px, calc(100% - 32px));
+      margin:0 auto;
+    }
+    .site-header{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+    .site-header .container{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      text-decoration:none;
+      min-width:0;
+      flex:1 1 auto;
+    }
+    .brand img{
+      display:block;
+      height:90px;
+      width:auto;
+      max-width:min(520px, 100%);
+      object-fit:contain;
+    }
+    nav{
+      flex:0 0 auto;
+      white-space:nowrap;
+    }
+    nav a{
+      color:var(--navy);
+      text-decoration:none;
+      margin-left:18px;
+      font-size:.95rem;
+    }
+    nav a:hover{text-decoration:underline}
+
+    .hero{
+      background:
+        linear-gradient(135deg, rgba(15,95,168,.90), rgba(123,60,180,.72) 48%, rgba(247,132,64,.75)),
+        radial-gradient(circle at top left, rgba(255,255,255,.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,.12), transparent 32%);
+      color:#fff;
+      padding:72px 0 58px;
+    }
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.78rem;
+      opacity:.92;
+      font-weight:700;
+      margin-bottom:12px;
+    }
+    h1{
+      margin:0 0 18px;
+      font-size:clamp(2.1rem, 5vw, 4rem);
+      line-height:1.05;
+      letter-spacing:-0.02em;
+    }
+    .lead{
+      font-size:1.12rem;
+      max-width:52ch;
+      margin:0 0 24px;
+      color:rgba(255,255,255,.96);
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+    .btn{
+      display:inline-block;
+      border-radius:999px;
+      padding:12px 20px;
+      font-weight:700;
+      text-decoration:none;
+      border:2px solid transparent;
+    }
+    .btn-primary{
+      background:#fff;
+      color:var(--navy);
+    }
+
+    .value-band{
+      background:var(--navy);
+      color:#fff;
+      padding:18px 0;
+      font-size:1.06rem;
+      font-weight:700;
+      text-align:center;
+    }
+
+    section{
+      padding:62px 0;
+    }
+    .section-title{
+      margin:0 0 12px;
+      font-size:2rem;
+      line-height:1.15;
+      color:var(--navy);
+    }
+    .section-intro{
+      margin:0 0 28px;
+      color:var(--muted);
+      max-width:70ch;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:28px;
+    }
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+    .grid-4{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:24px;
+      box-shadow:0 8px 24px rgba(15,39,71,.05);
+    }
+    .card h3{
+      margin:0 0 10px;
+      font-size:1.15rem;
+      color:var(--navy);
+    }
+    .card p{
+      margin:0 0 12px;
+    }
+    .muted{color:var(--muted)}
+    ul.clean{
+      margin:0;
+      padding-left:18px;
+    }
+    .facts{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+    .fact{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px;
+    }
+    .fact .label{
+      font-size:.85rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      margin-bottom:6px;
+      font-weight:700;
+    }
+    .fact .value{
+      font-size:1.15rem;
+      font-weight:800;
+      color:var(--navy);
+    }
+
+    .track-card{
+      border-top:5px solid var(--blue);
+    }
+    .track-card.orange{border-top-color:var(--orange)}
+    .track-card.gold{border-top-color:var(--gold)}
+    .track-card.green{border-top-color:var(--green)}
+
+    .profile-placeholder{
+      aspect-ratio: 4 / 3;
+      border:1px dashed #b7c5d8;
+      border-radius:14px;
+      background:linear-gradient(135deg, #f4f7fb, #eef3f9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--muted);
+      font-weight:700;
+      margin-bottom:14px;
+    }
+
+    details{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:16px 18px;
+    }
+    details + details{margin-top:12px}
+    summary{
+      cursor:pointer;
+      font-weight:700;
+      color:var(--navy);
+    }
+    details p{margin:12px 0 0}
+
+    .logo-strip{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+    .logo-box{
+      background:#fff;
+      border:1px dashed #b7c5d8;
+      border-radius:16px;
+      padding:24px;
+      text-align:center;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    footer{
+      border-top:1px solid var(--line);
+      background:#fff;
+      padding:28px 0 40px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    @media (max-width: 900px){
+      .grid-2,.grid-3,.grid-4,.logo-strip,.facts{
+        grid-template-columns:1fr;
+      }
+      .site-header .container{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      nav{
+        display:none;
+      }
+      .hero{
+        padding-top:56px;
+      }
+      .brand img{
+        height:90px;
+        max-width:100%;
+      }
+    }
+  </style>
+
+
+<style>
+  .subsection-title{
+    margin:0 0 18px;
+    font-size:1.35rem;
+    color:var(--navy);
+  }
+
+  .speaker-card{
+    text-align:center;
+    padding:28px 20px;
+  }
+
+.speakers-row,
+.organizers-row{
+  align-items:stretch;
+}
+
+.speaker-card{
+  text-align:center;
+  padding:28px 20px;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+
+.speaker-affiliation{
+  margin:0;
+  color:var(--muted);
+  line-height:1.5;
+  flex-grow:1;
+}
+
+  .speaker-photo-wrap{
+    width:160px;
+    height:160px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    overflow:hidden;
+    background:#eef3f9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .speaker-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .speaker-name{
+    margin:0 0 8px;
+    font-size:1.15rem;
+    font-weight:800;
+    color:var(--navy);
+    line-height:1.25;
+  }
+
+  .speaker-affiliation{
+    margin:0;
+    color:var(--muted);
+    line-height:1.5;
+  }
+
+.speaker-name a{
+  color:var(--navy);
+  text-decoration:none;
+}
+
+.speaker-name a:hover{
+  text-decoration:underline;
+}
+
+.speaker-photo-wrap a{
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.speaker-links{
+  margin-top:10px;
+}
+
+.speaker-links a{
+  color:var(--blue);
+  text-decoration:none;
+  font-weight:700;
+}
+
+.speaker-links a:hover{
+  text-decoration:underline;
+}
+
+  .more-coming-wrap{
+    background:linear-gradient(135deg, #f4f7fb, #eef3f9);
+  }
+
+  .more-coming-icon{
+    font-size:3.25rem;
+    line-height:1;
+    color:var(--navy);
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    background:#fff;
+    padding:28px 0 40px;
+    color:var(--muted);
+    font-size:.95rem;
+    text-align:center;
+  }
+
+.speakers-row,
+.organizers-row{
+  align-items:stretch;
+}
+
+.speaker-card{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="brand" aria-label="STEM Summer School Cyprus home">
+        <img src="C:\Users\lady7349\Desktop\Camp_2026\Site\images\Logo_169.svg" alt="STEM Summer School Cyprus logo" />
+      </a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#tracks">Tracks</a>
+        <a href="#learning">How it works</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">Applications open for Summer 2026</div>
+      <h1>STEM Summer School Cyprus 2026</h1>
+      <p class="lead">A high-school summer programme built around modern science, engineering, hands-on projects, and mentoring.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://forms.gle/jcFMGDEsXUjFGWjQ7" target="_blank" rel="noopener noreferrer">Apply now</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="value-band">
+    Explore STEM hands-on through projects, labs and mentoring.
+  </div>
+
+  <section id="about">
+    <div class="container grid-2">
+      <div>
+        <h2 class="section-title">About the programme</h2>
+        <p class="section-intro">STEM Summer School Cyprus is a 5-day programme for ambitious high-school students who want to explore advanced STEM subjects in an accessible, practical and inspiring format. The school combines lectures, guided workshops, hands-on activities and small-group projects.</p>
+        <div class="card">
+          <h3>STEM Summer School Cyprus offers</h3>
+          <ul class="clean">
+            <li>Insight on cutting edge STEM topics</li>
+            <li>Hands-on labs, demos, coding sessions and project work</li>
+            <li>Teaching across multiple scientific and technical tracks</li>
+            <li>Mentoring from researchers, engineers and university students</li>
+            <li>A selective cohort of motivated peers</li>
+            <li>A concluding hackathon and showcase of student work</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h2 class="section-title">Key information</h2>
+        <div class="facts">
+          <div class="fact">
+            <div class="label">Audience</div>
+            <div class="value">High school students</div>
+          </div>
+          <div class="fact">
+            <div class="label">Age range</div>
+            <div class="value">15–19</div>
+          </div>
+          <div class="fact">
+            <div class="label">When</div>
+            <div class="value">13 - 17 July 2026</div>
+          </div>
+          <div class="fact">
+            <div class="label">Location</div>
+            <div class="value">Larnaca, Cyprus</div>
+          </div>
+          <div class="fact">
+            <div class="label">Applications</div>
+            <div class="value">Now open</div>
+          </div>
+          <div class="fact">
+            <div class="label">Places</div>
+            <div class="value">Limited to 40</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tracks">
+    <div class="container">
+      <h2 class="section-title">Topics and tracks</h2>
+      <!-- <p class="section-intro">Students will explore frontier STEM areas through workshops, practical exercises and mini-projects.</p> -->
+      <div class="grid-4">
+        <div class="card track-card">
+          <h3>Quantum Science & Technology</h3>
+          <p class="muted">Introduction to quantum ideas, experiments and emerging technologies.</p>
+        </div>
+        <div class="card track-card orange">
+          <h3>Embedded Systems</h3>
+          <p class="muted">Computer architecture, programming languages, embedded C++ and practical hardware-software integration.</p>
+        </div>
+        <div class="card track-card gold">
+          <h3>Python & AI</h3>
+          <p class="muted">Programming foundations, data analysis, intelligent systems, and applied computational problem solving.</p>
+        </div>
+        <div class="card track-card green">
+          <h3>Bioengineering</h3>
+          <p class="muted">Biological systems, engineering approaches and innovation in the life sciences.</p>
+        </div>
+      </div>
+      <div class="grid-3" style="margin-top:22px;">
+        <div class="card">
+          <h3>Mathematical Thinking & Research Skills</h3>
+          <p class="muted">Structured reasoning, modelling, experimental design, teamwork and scientific communication across STEM disciplines.</p>
+        </div>
+        <div class="card">
+          <h3>Innovation & Entrepreneurship</h3>
+          <p class="muted">Connecting scientific ideas to real-world applications, product thinking and early-stage business perspectives.</p>
+        </div>
+        <div class="card">
+          <h3>Communication & Presentation</h3>
+          <p class="muted">Explaining technical ideas clearly, collaborating effectively and presenting project outcomes with confidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning">
+    <div class="container">
+      <h2 class="section-title">How students will learn</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Learn the ideas</h3>
+          <p>Short lectures and guided sessions introduce the core concepts behind each track.</p>
+        </div>
+        <div class="card">
+          <h3>Build and test</h3>
+          <p>Students work through labs, coding exercises, electronics activities and experimental demonstrations.</p>
+        </div>
+        <div class="card">
+          <h3>Create and present</h3>
+          <p>Small teams complete mini-projects and present what they learned at the end of the programme.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">Teaching team</h2>
+
+    <h3 class="subsection-title">Organizers</h3>
+    <div class="grid-4 speakers-row">
+
+      <div class="card speaker-card">
+        <div class="speaker-photo-wrap">
+	<a href="https://www.linkedin.com/in/christoforos-iakovou-469484165/" target="_blank">
+          <img src="images\Chris.jpeg" alt="Christofors" class="speaker-photo">
+        </a>
+	</div>
+        <p class="speaker-name">
+	<a href="https://www.linkedin.com/in/christoforos-iakovou-469484165/" target="_blank">
+	Christoforos Iakovou 
+	</a> 
+	</p>
+        <p class="speaker-affiliation">PhD Candidate, Physics (Cambridge)</p>
+      </div>
+
+      <div class="card speaker-card">
+        <div class="speaker-photo-wrap">
+	<a href="https://www.linkedin.com/in/petros-symeon-599899201/" target="_blank">
+          <img src="images\Petros.jpeg" alt="Organizer Name" class="speaker-photo">
+        </a>
+	</div>
+        <p class="speaker-name">
+	<a href="https://www.linkedin.com/in/petros-symeon-599899201/" target="_blank">
+	Petros Symeon </a> </p>
+        <p class="speaker-affiliation">PhD Candidate, Engineering (Cambridge)</p>
+      </div>
+    </div>
+
+    <h3 class="subsection-title" style="margin-top:40px;">Confirmed Speakers</h3>
+    <div class="grid-4 speakers-row">
+      <div class="card speaker-card">
+        <div class="speaker-photo-wrap">
+	<a href="https://www.linkedin.com/in/harris-hadjiantonis/" target="_blank">
+      	<img src="images/Harris.jpeg" alt="Harris Hadjiantonis" class="speaker-photo">
+    	</a>
+        </div>
+        <p class="speaker-name">
+	<a href="https://www.linkedin.com/in/your-linkedin/" target="_blank">
+      Harris Hadjiantonis
+   	 </a>
+	</p>
+        <p class="speaker-affiliation">Embedded Systems Engineer (Siemens)</p>
+      </div>
+
+      <div class="card speaker-card">
+        <div class="speaker-photo-wrap">
+        <a href="https://www.linkedin.com/in/michalis-michailidis-/" target="_blank">
+	<img src="images\Mike.jpeg" alt="Mike" class="speaker-photo">
+        </div> 
+	</a>
+        <p class="speaker-name">
+	<a href="https://www.linkedin.com/in/michalis-michailidis-/" target="_blank">
+	Michalis Michaelides </a> </p>
+        <p class="speaker-affiliation">Research Assistant, Syn-Bio (Cambridge)</p>
+      </div>
+
+      <!-- <div class="card speaker-card">
+        <div class="speaker-photo-wrap">
+          <img src="images/speaker_3.jpg" alt="" class="speaker-photo">
+        </div>
+        <p class="speaker-name">Michael Michaelides</p>
+        <p class="speaker-affiliation">Affiliation / role</p>
+      </div> -->
+
+      <div class="card speaker-card more-coming-card">
+        <div class="speaker-photo-wrap more-coming-wrap">
+          <div class="more-coming-icon">💡</div>
+        </div>
+        <p class="speaker-name">More to come...</p>
+        <p class="speaker-affiliation">Additional speakers will be announced soon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="faq">
+    <div class="container grid-2">
+      <div>
+        <h2 class="section-title">Frequently asked questions</h2>
+        <details open>
+          <summary>Who can apply?</summary>
+          <p>High-school students aged 15–19 with a strong interest in STEM are encouraged to apply.</p>
+        </details>
+        <details>
+          <summary>Do I need prior experience?</summary>
+          <p>While the syllabus is designed to support motivated learners of different backgrounds, prior experience in coding (<i>e.g., </i>Python, C) will be valuable.</p>
+        </details>
+        <details>
+          <summary>How selective is admission?</summary>
+          <p>Places are limited and selection is based on motivation, fit and available capacity.</p>
+        </details>
+       <details>
+          <summary>What is the cost of attendance?</summary>
+          <p>The cost of is €300, which covers attendance, lunch, and snacks throughout the day.</p>
+        </details>
+        <details>
+          <summary>Are there any scholarships available?</summary>
+          <p>Some places for exceptional candidates may be subsidised.</p>
+        </details>
+        <details>
+          <summary>When is the application deadline?</summary>
+          <p>Applications are accepted until <b>31/05/2026</b>.</p>
+        </details>
+       <details>
+          <summary>Do you offer a transportation service to/from the School?</summary>
+          <p>Depending on enrollment, we may be able to coordinate carpool groups or provide shuttle service to nearby areas. Let us know your transportation needs on the application form, and we'll do our best to accommodate them.</p>
+        </details>
+      </div>
+      <div id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="card">
+          <h3>Get in touch</h3>
+          <p>For questions about applications, partnerships, or sponsorship:</p>
+          <p><strong>Email:</strong> stemcampcy@gmail.com</p>
+          <p><strong>Location:</strong> PASCAL Private School, Larnaka, Cyprus</p>
+          <p><a class="btn btn-primary" href="https://forms.gle/jcFMGDEsXUjFGWjQ7" target="_blank" rel="noopener noreferrer">Apply now</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--<section>
+    <div class="container">
+      <h2 class="section-title">Partners and supporters</h2>
+      <p class="section-intro">Replace the placeholders below with your supporting institutions, schools, laboratories and sponsors.</p>
+      <div class="logo-strip">
+        <div class="logo-box">Partner logo</div>
+        <div class="logo-box">Partner logo</div>
+        <div class="logo-box">Partner logo</div>
+        <div class="logo-box">Partner logo</div>
+      </div>
+    </div>
+  </section> -->
+
+  <footer>
+    <div class="container">
+      STEM Summer School Cyprus 2026 · Christoforos Iakovou & Petros Symeon - All Rights Reserved
+    </div>
+  </footer>
+</body>
+</html>
