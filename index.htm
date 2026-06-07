@@ -268,29 +268,37 @@
     details p{margin:12px 0 0}
 
     .logo-strip{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  align-items:center;
 }
 
-	.logo-box{
-  background:#fff;
-  border:1px dashed #b7c5d8;
-  border-radius:16px;
-  padding:24px;
+.logo-box{
+  width:270px;
   height:100px;
+  background:#fff;
+  border:none;              /* removes dashed border */
+  border-radius:16px;
+  padding:0;                /* lets image fill the box */
+  overflow:hidden;          /* keeps rounded corners clean */
   display:flex;
   align-items:center;
   justify-content:center;
+  box-shadow:0 8px 24px rgba(15,39,71,.05);
+  text-decoration:none;
 }
 
-	.logo-box img{
-  max-width:180px;
-  max-height:60px;
-  width:auto;
-  height:auto;
-  object-fit:contain;
+.logo-box img{
+  width:100%;
+  height:100%;
+  object-fit:contain;       /* keeps full logo visible */
   display:block;
+}
+
+.logo-box:hover{
+  transform:translateY(-2px);
+  transition:.2s ease;
 }
 
     footer{
@@ -775,20 +783,26 @@
       We gratefully acknowledge support from
     </p>
 
-<div class="logo-strip">
-      <div class="logo-box">
+    <div class="logo-strip">
+
+      <a 
+        class="logo-box" 
+        href="https://www.optica.org/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
         <img src="images/logo_optica_knockout_rgb_300dpi.png" alt="Optica logo">
-      </div>
+      </a>
 
-	<div class="logo-strip">
-      <div class="logo-box">
-        <img src="images/PASCAL-Education-White.png" alt="PASCAL-Education-White">
-      </div>
+      <a 
+        class="logo-box" 
+        href="https://www.pascal.ac.cy/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        <img src="images/PASCAL-Education-White.png" alt="PASCAL International Education logo">
+      </a>
 
-      <!--
-      <div class="logo-box">
-        <img src="Pascal.jpg" alt="Another partner logo">
-      </div> -->
     </div>
   </div>
 </section>
